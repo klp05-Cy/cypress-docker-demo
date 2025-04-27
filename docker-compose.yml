@@ -1,0 +1,13 @@
+version: "3"
+services:
+  cypress:
+    build:
+      context: .
+    container_name: cypress-runner
+    volumes:
+      - ./cypress:/app/cypress
+      - ./cypress.config.js:/app/cypress.config.js
+      - ./package.json:/app/package.json
+    environment:
+      - CYPRESS_baseUrl=http://localhost:3000 # if you are testing a local web app
+    command: npx cypress run
